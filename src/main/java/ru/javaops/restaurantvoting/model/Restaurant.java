@@ -15,9 +15,20 @@ import java.util.Date;
 @AllArgsConstructor
 public class Restaurant extends AbstractNamedEntity {
 
-    @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
-    private Date registered = new Date();
 
     @Column(name = "description", nullable = false)
     private String description;
+
+    @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
+    private Date registered = new Date();
+
+    public Restaurant(Integer id, String name, String description, Date registered) {
+        super(id, name);
+        this.description = description;
+        this.registered = registered;
+    }
+
+    public Restaurant (Restaurant r){
+        this(r.id, r.name, r.description, r.registered);
+    }
 }

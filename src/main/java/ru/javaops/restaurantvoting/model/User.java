@@ -1,12 +1,14 @@
 package ru.javaops.restaurantvoting.model;
 
 import lombok.*;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -46,4 +48,18 @@ public class User extends AbstractBaseEntity {
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    public User(Integer id, String email, String firstName, String lastname, String password, Date registered, Collection<Role> roles) {
+        super(id);
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastname;
+        this.password = password;
+        this.registered = registered;
+        setRoles((Set<Role>) roles);
+    }
+
+    public User(User u) {
+        this(u.id, u.email, u.firstName, u.lastName, u.password, u.registered, u.roles);
+    }
 }
