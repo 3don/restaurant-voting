@@ -1,7 +1,5 @@
 package ru.javaops.restaurantvoting;
 
-import ru.javaops.restaurantvoting.model.Dish;
-import ru.javaops.restaurantvoting.model.Restaurant;
 import ru.javaops.restaurantvoting.model.Vote;
 
 import java.time.LocalDate;
@@ -24,13 +22,12 @@ public class VoteTestData {
     public static final Vote vote_2 = new Vote(LocalDate.now(), USER2_ID, RESTAURANT4_ID);
     public static final Vote vote_3 = new Vote(LocalDate.now(), USER3_ID, RESTAURANT2_ID);
 
-    public static Vote getNew(){
+    public static Vote getNew() {
         return new Vote(LocalDate.now(), USER3_ID, RESTAURANT2_ID);
     }
 
-    public static Vote getUpdated(){
+    public static Vote getUpdated() {
         Vote updated = new Vote(vote_3.getVote_date(), vote_3.getUser_id(), RESTAURANT1_ID);
         return updated;
     }
-
 }

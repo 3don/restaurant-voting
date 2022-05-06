@@ -8,13 +8,13 @@ VALUES ('user@gmail.com', 'User_First', 'User_Last', 'password'),
        ('admin@admin.ru', 'Second_admin', 'Admin_Last_2', 'admin');
 
 INSERT INTO USER_ROLES (ROLE, USER_ID)
-VALUES ('ROLE_USER', 100000),
-       ('ROLE_USER', 100001),
-       ('ROLE_USER', 100002),
-       ('ROLE_ADMIN', 100003),
-       ('ROLE_USER', 100003),
-       ('ROLE_ADMIN', 100004),
-       ('ROLE_USER', 100004);
+VALUES ('USER', 100000),
+       ('USER', 100001),
+       ('USER', 100002),
+       ('ADMIN', 100003),
+       ('USER', 100003),
+       ('ADMIN', 100004),
+       ('USER', 100004);
 
 INSERT INTO RESTAURANTS (NAME, DESCRIPTION)
 VALUES ('Mac', 'FastFood, address etc'),

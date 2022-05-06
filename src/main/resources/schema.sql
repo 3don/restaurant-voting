@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS dishes;
 DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS votes;
+DROP TABLE IF EXISTS restaurants;
+DROP TABLE IF EXISTS users;
 DROP SEQUENCE IF EXISTS global_seq;
 
 CREATE SEQUENCE GLOBAL_SEQ START WITH 100000;
@@ -43,6 +43,7 @@ CREATE TABLE dishes
     price           NUMERIC(5,2) NOT NULL,
     description     VARCHAR(255) NOT NULL,
     restaurant_id   INTEGER      NOT NULL,
+    CONSTRAINT dish_restraunt_date_idx UNIQUE (date_menu, restaurant_id, name),
     FOREIGN KEY (restaurant_id) REFERENCES restaurants (id) ON DELETE CASCADE
 );
 
@@ -51,7 +52,7 @@ CREATE TABLE votes
     vote_date       DATE DEFAULT now() NOT NULL,
     user_id         INTEGER NOT NULL,
     restaurant_id   INTEGER NOT NULL,
-    CONSTRAINT user_vote_date_idx UNIQUE (user_id, vote_date),
+    CONSTRAINT user_vote_date_idx UNIQUE (vote_date, user_id),
     FOREIGN KEY (user_id) REFERENCES USERS (id) ON DELETE CASCADE,
     FOREIGN KEY (restaurant_id) REFERENCES RESTAURANTS (id) ON DELETE CASCADE
 );
