@@ -29,3 +29,19 @@ spring:
     username: sa
     password:
   h2.console.enabled: true
+
+  # Jackson Serialization Issue Resolver
+  jackson:
+    visibility:
+      field: any
+      getter: none
+      setter: none
+      is-getter: none
+    date-format: yyyy-MM-dd HH:mm:ss
+    default-property-inclusion: non_null
+
+#logging:
+#  level:
+#    root: WARN
+#    ru.javaops.topjava2: DEBUG
+#    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
