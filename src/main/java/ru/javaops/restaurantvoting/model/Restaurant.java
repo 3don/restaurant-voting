@@ -17,7 +17,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Restaurant extends AbstractNamedEntity {
 
 
