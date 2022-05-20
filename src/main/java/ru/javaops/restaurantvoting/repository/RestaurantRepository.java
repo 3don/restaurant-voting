@@ -19,10 +19,10 @@ public interface RestaurantRepository extends BaseRepository<Restaurant> {
     List<Restaurant> getAllWithDishes();
 
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT r FROM Restaurant r LEFT JOIN FETCH r.dishes d WHERE r.id=?1 AND d.date_menu=current_date")
+    @Query("SELECT r FROM Restaurant r LEFT JOIN FETCH r.dishes d WHERE r.id=?1 AND d.dateMenu=current_date")
     Restaurant getWithTodaysDishes(int id);
 
     @EntityGraph(attributePaths = {"dishes"}, type = EntityGraph.EntityGraphType.LOAD)
-    @Query("SELECT r FROM Restaurant r LEFT JOIN FETCH r.dishes d WHERE d.date_menu=current_date")
+    @Query("SELECT r FROM Restaurant r LEFT JOIN FETCH r.dishes d WHERE d.dateMenu=current_date")
     List<Restaurant> getAllWithTodaysDishes();
 }

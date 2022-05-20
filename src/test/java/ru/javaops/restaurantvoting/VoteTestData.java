@@ -27,7 +27,7 @@ public class VoteTestData {
     }
 
     public static Vote getUpdated() {
-        Vote updated = new Vote(vote_3.getVote_date(), vote_3.getUser_id(), RESTAURANT1_ID);
+        Vote updated = new Vote(vote_3.getVoteDate(), vote_3.getUserId(), RESTAURANT1_ID);
         return updated;
     }
 }

@@ -45,6 +45,6 @@ public class DishTestData {
     }
 
     public static Dish getUpdated() {
-        return new Dish(DISH_ID, "Updated Name", "Updated description", 200, dish1.getDate_menu());
+        return new Dish(DISH_ID, "Updated Name", "Updated description", 200, dish1.getDateMenu());
     }
 }

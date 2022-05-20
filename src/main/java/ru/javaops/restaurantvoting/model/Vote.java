@@ -15,22 +15,22 @@ import java.time.LocalDate;
 public class Vote extends AbstractBaseEntity{
 
     @Column(name = "vote_date")
-    private LocalDate vote_date;
+    private LocalDate voteDate;
+
+    @Column(name = "user_id", updatable=false, insertable=false)
+    private int userId;
 
     @JoinColumn(name = "user_id")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
 
-    @Column(name = "user_id", updatable=false, insertable=false)
-    private int user_id;
-
     @Column(name = "restaurant_id")
     @NotNull
-    private int restaurant_id;
+    private int restaurantId;
 
-    public Vote(LocalDate vote_date, int user_id, int restaurant_id) {
-        this.vote_date=vote_date;
-        this.user_id=user_id;
-        this.restaurant_id=restaurant_id;
+    public Vote(LocalDate vote_date, int userId, int restaurantId) {
+        this.voteDate=vote_date;
+        this.userId=userId;
+        this.restaurantId =restaurantId;
     }
 }

@@ -49,6 +49,7 @@ CREATE TABLE dishes
 
 CREATE TABLE votes
 (
+    id              INTEGER DEFAULT GLOBAL_SEQ.nextval PRIMARY KEY,
     vote_date       DATE DEFAULT now() NOT NULL,
     user_id         INTEGER NOT NULL,
     restaurant_id   INTEGER NOT NULL,

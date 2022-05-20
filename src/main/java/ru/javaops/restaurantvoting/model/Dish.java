@@ -1,9 +1,7 @@
 package ru.javaops.restaurantvoting.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -21,7 +19,7 @@ public class Dish extends AbstractNamedEntity {
 
     @Column(name = "date_menu", columnDefinition = "DATE DEFAULT current_date", nullable = false)
     @NotNull
-    private LocalDate date_menu = LocalDate.now();
+    private LocalDate dateMenu = LocalDate.now();
 
     @Column(name = "price", nullable = false)
     @NotNull
@@ -39,10 +37,10 @@ public class Dish extends AbstractNamedEntity {
     //@Schema(hidden = true)
     private Restaurant restaurant;
 
-    public Dish(Integer id, String name, String description, int price, LocalDate date_menu) {
+    public Dish(Integer id, String name, String description, int price, LocalDate dateMenu) {
         super(id, name);
         this.description = description;
         this.price = price;
-        this.date_menu = date_menu;
+        this.dateMenu = dateMenu;
     }
 }

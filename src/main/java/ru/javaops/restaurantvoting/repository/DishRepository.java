@@ -17,7 +17,7 @@ public interface DishRepository extends JpaRepository<Dish, Integer> {
     @Query("SELECT d FROM Dish d WHERE d.id = :id and d.restaurant.id = :restaurantId")
     Optional<Dish> get(int id, int restaurantId);
 
-    @Query("SELECT d FROM Dish d WHERE d.restaurant.id=:restaurantId AND d.date_menu=:dateMenu")
+    @Query("SELECT d FROM Dish d WHERE d.restaurant.id=:restaurantId AND d.dateMenu=:dateMenu")
     List<Dish> getMenuByRestaurantByDate(int restaurantId, LocalDate dateMenu);
 
     default Dish checkBelong(int id, int restaurantId) {
