@@ -3,6 +3,7 @@ package ru.javaops.restaurantvoting.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -18,9 +19,9 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class Dish extends AbstractNamedEntity {
 
-    @Column(name = "date_menu", nullable = false)
+    @Column(name = "date_menu", columnDefinition = "DATE DEFAULT current_date", nullable = false)
     @NotNull
-    private LocalDate date_menu;
+    private LocalDate date_menu = LocalDate.now();
 
     @Column(name = "price", nullable = false)
     @NotNull
@@ -35,7 +36,7 @@ public class Dish extends AbstractNamedEntity {
     @JoinColumn(name = "restaurant_id", nullable = false)
     @JsonBackReference
     @NotNull
-    @Schema(hidden = true)
+    //@Schema(hidden = true)
     private Restaurant restaurant;
 
     public Dish(Integer id, String name, String description, int price, LocalDate date_menu) {

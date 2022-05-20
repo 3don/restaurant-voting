@@ -38,7 +38,7 @@ CREATE TABLE restaurants
 CREATE TABLE dishes
 (
     id              INTEGER DEFAULT GLOBAL_SEQ.nextval PRIMARY KEY,
-    date_menu       DATE DEFAULT now()  NOT NULL,
+    date_menu       DATE DEFAULT current_date NOT NULL,
     name            VARCHAR(255) NOT NULL,
     price           NUMERIC(5,2) NOT NULL,
     description     VARCHAR(255) NOT NULL,

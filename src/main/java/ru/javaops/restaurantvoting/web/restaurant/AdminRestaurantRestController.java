@@ -46,25 +46,25 @@ public class AdminRestaurantRestController extends AbstractRestaurantController 
     }
 
     @Override
-    @GetMapping("/{id}/menu")
+    @GetMapping("/{id}/with-menu")
     public Restaurant getWithTodaysDishById(@PathVariable int id) {
         return super.getWithTodaysDishById(id);
     }
 
     @Override
-    @GetMapping("/menu")
+    @GetMapping("/with-menu")
     public List<Restaurant> getAllWithTodaysDish() {
         return super.getAllWithTodaysDish();
     }
 
     @Override
-    @GetMapping("/{id}/dishes")
+    @GetMapping("/{id}/with-dishes")
     public Restaurant getWithDishById(@PathVariable int id) {
         return super.getWithDishById(id);
     }
 
     @Override
-    @GetMapping("/dishes")
+    @GetMapping("/with-dishes")
     public List<Restaurant> getAllWithDish() {
         return super.getAllWithDish();
     }
