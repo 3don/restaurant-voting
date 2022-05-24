@@ -2,6 +2,7 @@ package ru.javaops.restaurantvoting.web.vote;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +11,10 @@ import ru.javaops.restaurantvoting.model.Vote;
 import ru.javaops.restaurantvoting.repository.RestaurantRepository;
 import ru.javaops.restaurantvoting.repository.UserRepository;
 import ru.javaops.restaurantvoting.repository.VoteRepository;
+import ru.javaops.restaurantvoting.web.AuthUser;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import static ru.javaops.restaurantvoting.util.UserUtil.getAdminId;
 
 @RestController
 @RequestMapping(value = UserVoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -34,23 +34,21 @@ public class UserVoteRestController {
         this.restaurantRepository = restaurantRepository;
     }
 
-
-    //TODO: add authorization
-    @GetMapping
-    public Vote get() {
-        log.info("get user's {} vote ", getAdminId());
-        return voteRepository.get(LocalDate.now(), getAdminId()).orElse(null);
+   @GetMapping
+    public Vote get(@AuthenticationPrincipal AuthUser authUser) {
+        log.info("get user's {} vote ", authUser.id());
+        return voteRepository.get(LocalDate.now(), authUser.id()).orElse(null);
     }
 
     @Transactional
     @PostMapping("{restaurantId}")
-    public Vote makeVote(@PathVariable int restaurantId) {
-        log.info("make user's {} vote ", getAdminId());
+    public Vote makeVote(@PathVariable int restaurantId, @AuthenticationPrincipal AuthUser authUser) {
+        log.info("make user's {} vote ", authUser.id());
         Assert.notNull(restaurantRepository.getById(restaurantId), "restaurant must not be null");
-        Vote vote = get();
+        Vote vote = get(authUser);
         if (vote == null) {
-            vote = new Vote(LocalDate.now(), getAdminId(), restaurantId);
-            vote.setUser(userRepository.getById(getAdminId()));
+            vote = new Vote(LocalDate.now(), authUser.id(), restaurantId);
+            vote.setUser(userRepository.getById(authUser.id()));
             return voteRepository.save(vote);
         } else {
             if (LocalTime.now().isBefore(CONTROL_TIME)) {
@@ -61,6 +59,4 @@ public class UserVoteRestController {
             }
         }
     }
-
-
 }

@@ -1,5 +1,6 @@
 package ru.javaops.restaurantvoting.web.restaurant;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,39 +8,42 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.javaops.restaurantvoting.model.Restaurant;
+import ru.javaops.restaurantvoting.repository.RestaurantRepository;
 
 import java.util.List;
 
 @RestController
 @RequestMapping(value = UserRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
-public class UserRestaurantRestController extends AbstractRestaurantController{
+@AllArgsConstructor
+public class UserRestaurantRestController {
 
-    static final String REST_URL = "/api/user/restaurants";
+    private RestaurantRepository repository;
 
-    @Override
+    static final String REST_URL = "/api/profile/restaurants";
+
     @GetMapping("/{id}")
     public Restaurant get(@PathVariable int id) {
-        return super.get(id);
+        log.info("get restaurant {}", id);
+        return repository.findById(id).orElse(null);
     }
 
-    @Override
     @GetMapping()
     public List<Restaurant> getAll() {
-        return super.getAll();
+        log.info("get all restaurants");
+        return repository.findAll();
     }
 
-    @Override
-    @GetMapping("/{id}/menu")
+    @GetMapping("/{id}/with-menu")
     public Restaurant getWithTodaysDishById(@PathVariable int id) {
-        return super.getWithTodaysDishById(id);
+        log.info("get restaurant {} with its today's dishes", id);
+        return repository.getWithTodaysDishes(id);
     }
 
-    @Override
-    @GetMapping("/menu")
+    @GetMapping("/with-menu")
     public List<Restaurant> getAllWithTodaysDish() {
-        return super.getAllWithTodaysDish();
+        log.info("get all restaurants with theirs today's dishes");
+        return repository.getAllWithTodaysDishes();
     }
-
 }
 

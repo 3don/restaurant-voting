@@ -1,14 +1,18 @@
 package ru.javaops.restaurantvoting.util;
 
+import lombok.experimental.UtilityClass;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import ru.javaops.restaurantvoting.model.User;
+
+@UtilityClass
 public class UserUtil {
 
-    private static int adminId = 100003;
-    private static int userId = 100001;
+    public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-    public static int getAdminId() {
-        return adminId;
-    }
-    public static int getUserId() {
-        return userId;
+    public static User prepareToSave(User user) {
+        user.setPassword(PASSWORD_ENCODER.encode(user.getPassword()));
+        user.setEmail(user.getEmail().toLowerCase());
+        return user;
     }
 }

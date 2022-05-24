@@ -40,8 +40,9 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     default-property-inclusion: non_empty
 
-#logging:
-#  level:
-#    root: WARN
-#    ru.javaops.topjava2: DEBUG
-#    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG
+logging:
+  level:
+    root: WARN
+    ru.javaops.restaurantvoting: DEBUG
+    org.springframework.security.web.FilterChainProxy: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation.ExceptionHandlerExceptionResolver: DEBUG

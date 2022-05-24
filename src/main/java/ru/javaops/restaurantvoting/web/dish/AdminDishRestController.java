@@ -2,7 +2,6 @@ package ru.javaops.restaurantvoting.web.dish;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +11,6 @@ import ru.javaops.restaurantvoting.model.Dish;
 import ru.javaops.restaurantvoting.repository.DishRepository;
 import ru.javaops.restaurantvoting.service.DishService;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -24,31 +22,12 @@ import static ru.javaops.restaurantvoting.util.ValidationUtil.checkNew;
 @RequestMapping(value = AdminDishRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 @AllArgsConstructor
-public class AdminDishRestController extends AbstractDishController {
+public class AdminDishRestController {
 
     private final DishRepository repository;
     private final DishService service;
 
     static final String REST_URL = "/api/admin/restaurants";
-
-    @Override
-    @GetMapping("/{restaurantId}/dishes/{id}")
-    public Dish get(@PathVariable int id, @PathVariable int restaurantId) {
-        return super.get(id, restaurantId);
-    }
-
-    @Override
-    @GetMapping("/{restaurantId}/dishes")
-    public List<Dish> getAllByRestaurant(@PathVariable int restaurantId) {
-        return super.getAllByRestaurant(restaurantId);
-    }
-
-    @Override
-    @GetMapping("/{restaurantId}/menu")
-    public List<Dish> getMenuByRestaurantByDate(@PathVariable int restaurantId,
-                                                @RequestParam(required = false) @Nullable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate dateMenu) {
-        return super.getMenuByRestaurantByDate(restaurantId, dateMenu==null ? LocalDate.now():dateMenu);
-    }
 
     @GetMapping("/dishes")
     public List<Dish> getAll() {
@@ -73,7 +52,7 @@ public class AdminDishRestController extends AbstractDishController {
         service.save(dish, restaurantId);
     }
 
-    @PostMapping(value="/{restaurantId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{restaurantId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Dish create(@PathVariable int restaurantId, @RequestBody Dish dish) {
         log.info("create {} for user {}", dish, restaurantId);
         checkNew(dish);
