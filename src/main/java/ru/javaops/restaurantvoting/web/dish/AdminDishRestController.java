@@ -2,20 +2,17 @@ package ru.javaops.restaurantvoting.web.dish;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 import ru.javaops.restaurantvoting.model.Dish;
 import ru.javaops.restaurantvoting.repository.DishRepository;
 import ru.javaops.restaurantvoting.service.DishService;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import static ru.javaops.restaurantvoting.util.ValidationUtil.assureIdConsistent;
-import static ru.javaops.restaurantvoting.util.ValidationUtil.checkNew;
+import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.assureIdConsistent;
+import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.checkNew;
 
 
 @RestController

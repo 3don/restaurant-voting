@@ -1,5 +1,6 @@
 package ru.javaops.restaurantvoting.model;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,8 @@ public class Vote extends AbstractBaseEntity{
 
     @JoinColumn(name = "user_id")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @NotNull
+    @Schema(hidden = true)
     private User user;
 
     @Column(name = "restaurant_id")

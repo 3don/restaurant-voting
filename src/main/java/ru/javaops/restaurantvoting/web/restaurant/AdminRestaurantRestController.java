@@ -11,8 +11,8 @@ import ru.javaops.restaurantvoting.repository.RestaurantRepository;
 
 import java.util.List;
 
-import static ru.javaops.restaurantvoting.util.ValidationUtil.assureIdConsistent;
-import static ru.javaops.restaurantvoting.util.ValidationUtil.checkNew;
+import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.assureIdConsistent;
+import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.checkNew;
 
 @RestController
 @RequestMapping(value = AdminRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)

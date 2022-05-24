@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Transactional;
 
-import static ru.javaops.restaurantvoting.util.ValidationUtil.checkModification;
+import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.checkModification;
 
 // https://stackoverflow.com/questions/42781264/multiple-base-repositories-in-spring-data-jpa
 @NoRepositoryBean

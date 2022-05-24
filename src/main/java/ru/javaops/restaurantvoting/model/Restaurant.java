@@ -1,6 +1,5 @@
 package ru.javaops.restaurantvoting.model;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
@@ -28,8 +27,8 @@ public class Restaurant extends AbstractNamedEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant")//, cascade = CascadeType.REMOVE, orphanRemoval = true)
     @JsonManagedReference
-    @Schema(hidden = true)
     @OnDelete(action = OnDeleteAction.CASCADE) //https://stackoverflow.com/a/44988100/548473
+    @Schema(hidden = true)
     private List<Dish> dishes;
 
     public Restaurant(Integer id, String name, String description, Date registered) {

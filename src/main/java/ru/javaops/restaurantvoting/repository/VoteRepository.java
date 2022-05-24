@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Transactional(readOnly = true)
-public interface VoteRepository extends JpaRepository<Vote, Integer> {
+public interface VoteRepository extends BaseRepository<Vote> {
 
     @Query("SELECT v FROM Vote v WHERE v.voteDate = :voteDate and v.user.id = :userId")
     Optional<Vote> get(LocalDate voteDate, int userId);

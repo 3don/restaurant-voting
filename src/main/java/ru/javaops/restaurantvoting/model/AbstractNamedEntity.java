@@ -1,5 +1,7 @@
 package ru.javaops.restaurantvoting.model;
 
+import ru.javaops.restaurantvoting.util.validation.NoHtml;
+
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
@@ -7,6 +9,7 @@ import javax.persistence.MappedSuperclass;
 public abstract class AbstractNamedEntity extends AbstractBaseEntity {
 
     @Column(name = "name", nullable = false)
+    @NoHtml
     protected String name;
 
     protected AbstractNamedEntity() {

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface DishRepository extends JpaRepository<Dish, Integer> {
+public interface DishRepository extends BaseRepository<Dish> {
 
     @Query("SELECT d FROM Dish d WHERE d.restaurant.id=:restaurantId")
     List<Dish> getAllByRestaurant(int restaurantId);

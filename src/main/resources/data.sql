@@ -4,7 +4,7 @@ INSERT INTO USERS (EMAIL, FIRST_NAME, LAST_NAME, PASSWORD)
 VALUES ('user@gmail.com', 'User_First', 'User_Last', '{noop}password'),
        ('user@javaops.ru', 'User2_First', 'User2_Last', '{noop}user'),
        ('user@user.ru', 'User3_First', 'User3_Last', '{noop}user'),
-       ('admin@javaops.ru', 'Admin_First', 'Admin_Last', '{noop}admin'),
+       ('admin@gmail.com', 'Admin_First', 'Admin_Last', '{noop}admin'),
        ('admin@admin.ru', 'Second_admin', 'Admin_Last_2', '{noop}admin');
 
 INSERT INTO USER_ROLES (ROLE, USER_ID)
@@ -54,4 +54,5 @@ values (now()-1, 100000, 100006),
        (now()-1, 100004, 100006),
        (now(), 100000, 100007),
        (now(), 100001, 100008),
-       (now(), 100002, 100006);
+       (now(), 100002, 100006),
+       (now(), 100003, 100008);

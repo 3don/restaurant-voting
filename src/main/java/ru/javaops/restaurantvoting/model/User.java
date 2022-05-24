@@ -1,6 +1,8 @@
 package ru.javaops.restaurantvoting.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
+import ru.javaops.restaurantvoting.util.validation.NoHtml;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -23,6 +25,7 @@ public class User extends AbstractBaseEntity {
     @Email
     @NotNull
     @Size(max = 128)
+    @NoHtml
     private String email;
 
     @Column(name = "first_name")
@@ -35,9 +38,11 @@ public class User extends AbstractBaseEntity {
 
     @Column(name = "password", nullable = false)
     @Size(max = 256)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Date registered = new Date();
 
     @Enumerated(EnumType.STRING)

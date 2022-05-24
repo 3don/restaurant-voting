@@ -37,7 +37,7 @@ spring:
       getter: none
       setter: none
       is-getter: none
-    date-format: yyyy-MM-dd HH:mm:ss
+
     default-property-inclusion: non_empty
 
 logging:

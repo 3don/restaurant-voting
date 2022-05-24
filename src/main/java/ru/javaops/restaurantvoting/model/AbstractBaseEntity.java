@@ -1,5 +1,7 @@
 package ru.javaops.restaurantvoting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
 import org.springframework.util.Assert;
@@ -15,6 +17,7 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = START_SEQ)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY) // https://stackoverflow.com/a/28025008/548473
     protected Integer id;
 
     protected AbstractBaseEntity() {
@@ -37,6 +40,7 @@ public abstract class AbstractBaseEntity implements Persistable<Integer> {
         return id;
     }
 
+    @JsonIgnore
     public boolean isNew() {
         return this.id == null;
     }

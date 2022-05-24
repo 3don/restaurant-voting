@@ -1,4 +1,4 @@
-package ru.javaops.restaurantvoting.util;
+package ru.javaops.restaurantvoting.util.validation;
 
 import lombok.experimental.UtilityClass;
 import ru.javaops.restaurantvoting.error.IllegalRequestDataException;
