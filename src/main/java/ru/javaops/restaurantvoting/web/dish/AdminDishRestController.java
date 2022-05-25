@@ -9,6 +9,7 @@ import ru.javaops.restaurantvoting.model.Dish;
 import ru.javaops.restaurantvoting.repository.DishRepository;
 import ru.javaops.restaurantvoting.service.DishService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.assureIdConsistent;
@@ -42,7 +43,7 @@ public class AdminDishRestController {
 
     @PutMapping(value = "/{restaurantId}/dishes/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable int restaurantId, @RequestBody Dish dish, @PathVariable int id) {
+    public void update(@PathVariable int restaurantId, @Valid @RequestBody Dish dish, @PathVariable int id) {
         log.info("update {} for restaurant {}", dish, restaurantId);
         assureIdConsistent(dish, id);
         repository.checkBelong(id, restaurantId);
@@ -50,7 +51,7 @@ public class AdminDishRestController {
     }
 
     @PostMapping(value = "/{restaurantId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Dish create(@PathVariable int restaurantId, @RequestBody Dish dish) {
+    public Dish create(@PathVariable int restaurantId, @Valid  @RequestBody Dish dish) {
         log.info("create {} for user {}", dish, restaurantId);
         checkNew(dish);
         return service.save(dish, restaurantId);

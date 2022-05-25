@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import ru.javaops.restaurantvoting.util.validation.NoHtml;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Restaurant extends AbstractNamedEntity {
 
 
     @Column(name = "description", nullable = false)
+    @NoHtml
     private String description;
 
     @Column(name = "registered", nullable = false, columnDefinition = "timestamp default now()", updatable = false)

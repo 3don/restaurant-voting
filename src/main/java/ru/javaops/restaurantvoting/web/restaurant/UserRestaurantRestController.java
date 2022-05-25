@@ -2,6 +2,8 @@ package ru.javaops.restaurantvoting.web.restaurant;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,7 @@ import java.util.List;
 @RequestMapping(value = UserRestaurantRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
 @AllArgsConstructor
+@CacheConfig(cacheNames = "restaurants")
 public class UserRestaurantRestController {
 
     private RestaurantRepository repository;
@@ -28,6 +31,7 @@ public class UserRestaurantRestController {
         return repository.findById(id).orElse(null);
     }
 
+    @Cacheable
     @GetMapping()
     public List<Restaurant> getAll() {
         log.info("get all restaurants");

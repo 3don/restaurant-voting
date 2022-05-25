@@ -16,6 +16,8 @@ import ru.javaops.restaurantvoting.web.AuthUser;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static ru.javaops.restaurantvoting.util.validation.ValidationUtil.assureIdConsistent;
+
 @RestController
 @RequestMapping(value = UserVoteRestController.REST_URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @Slf4j
@@ -41,7 +43,7 @@ public class UserVoteRestController {
     }
 
     @Transactional
-    @PostMapping("{restaurantId}")
+    @PostMapping("/{restaurantId}")
     public Vote makeVote(@PathVariable int restaurantId, @AuthenticationPrincipal AuthUser authUser) {
         log.info("make user's {} vote ", authUser.id());
         Assert.notNull(restaurantRepository.getById(restaurantId), "restaurant must not be null");

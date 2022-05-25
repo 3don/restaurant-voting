@@ -3,6 +3,8 @@ package ru.javaops.restaurantvoting.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import ru.javaops.restaurantvoting.util.validation.NoHtml;
 
 import javax.persistence.*;
