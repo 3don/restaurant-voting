@@ -11,7 +11,7 @@ import static ru.javaops.restaurantvoting.Utils.getYesterday;
 import static ru.javaops.restaurantvoting.model.AbstractBaseEntity.START_SEQ;
 
 public class UserTestData {
-    public static final MatcherFactory.Matcher<User> USER_MATCHER = MatcherFactory.usingIgnoringFieldsComparator("registered", "roles");
+    public static final MatcherFactory.Matcher<User> USER_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(User.class, "registered", "password");
 
     public static final int USER_ID = START_SEQ;
     public static final int USER2_ID = START_SEQ + 1;
@@ -19,6 +19,8 @@ public class UserTestData {
     public static final int ADMIN_ID = START_SEQ + 3;
     public static final int ADMIN2_ID = START_SEQ + 4;
     public static final int NOT_FOUND = 10;
+    public static final String USER_MAIL = "user@gmail.com";
+    public static final String ADMIN_MAIL = "admin@gmail.com";
 
     public static final User user = new User(USER_ID, "user@gmail.com", "User_First", "User_Last", "password", getYesterday(), Set.of(Role.USER));
     public static final User user2 = new User(USER2_ID, "user@javaops.ru", "User2_First", "User2_Last", "user", getYesterday(), Set.of(Role.USER));

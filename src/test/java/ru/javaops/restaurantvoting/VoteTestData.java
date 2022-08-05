@@ -9,7 +9,7 @@ import static ru.javaops.restaurantvoting.UserTestData.*;
 
 public class VoteTestData {
 
-    public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory.usingIgnoringFieldsComparator();
+    public static final MatcherFactory.Matcher<Vote> VOTE_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Vote.class);
 
     public static final int NOT_FOUND = 10;
 

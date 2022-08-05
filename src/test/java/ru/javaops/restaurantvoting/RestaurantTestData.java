@@ -9,7 +9,7 @@ import static ru.javaops.restaurantvoting.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
 
-    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator();
+    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class);
 
     public static final int RESTAURANT1_ID = START_SEQ + 5;
     public static final int RESTAURANT2_ID = START_SEQ + 6;
