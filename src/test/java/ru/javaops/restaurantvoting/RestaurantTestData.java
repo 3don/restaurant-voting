@@ -4,12 +4,17 @@ import ru.javaops.restaurantvoting.model.Restaurant;
 
 import java.util.Date;
 
+import static ru.javaops.restaurantvoting.DishTestData.dishes_1_restaurant;
 import static ru.javaops.restaurantvoting.Utils.getYesterday;
 import static ru.javaops.restaurantvoting.model.AbstractBaseEntity.START_SEQ;
 
 public class RestaurantTestData {
 
-    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class);
+    public static final MatcherFactory.Matcher<Restaurant> RESTAURANT_MATCHER = MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class,
+            "dishes", "registered");
+    public static MatcherFactory.Matcher<Restaurant> RESTAURANT_WITH_DISHES_MATCHER =MatcherFactory.usingIgnoringFieldsComparator(Restaurant.class,
+            "registered", "dishes.restaurant");
+
 
     public static final int RESTAURANT1_ID = START_SEQ + 5;
     public static final int RESTAURANT2_ID = START_SEQ + 6;
@@ -21,6 +26,10 @@ public class RestaurantTestData {
     public static final Restaurant restaurant2 = new Restaurant(RESTAURANT2_ID, "7/11", "FastFood2, address etc", getYesterday());
     public static final Restaurant restaurant3 = new Restaurant(RESTAURANT3_ID, "Fried chicken", "FastFood3, description", getYesterday());
     public static final Restaurant restaurant4 = new Restaurant(RESTAURANT4_ID, "Bochka", "restaurant", getYesterday());
+
+    static {
+        restaurant1.setDishes(dishes_1_restaurant);
+    }
 
 
     public static Restaurant getNew() {

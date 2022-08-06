@@ -39,6 +39,7 @@ public class DishTestData {
     public static final Dish dish11 = new Dish(DISH_ID + 10, "Bochka beer", "today s beer", 80, LocalDate.now());
 
     public static final List<Dish> dishes = List.of(dish1, dish2, dish3, dish4, dish5, dish6, dish7, dish8, dish9, dish10, dish11);
+    public static final List<Dish> dishes_1_restaurant = List.of(dish1_past, dish2_past, dish3_past, dish1, dish2, dish3);
 
     public static Dish getNew() {
         return new Dish(null, "Bochka dinner", "today s dinner", 200, LocalDate.now());
