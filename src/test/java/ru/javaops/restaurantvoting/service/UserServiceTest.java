@@ -20,6 +20,4 @@ class UserServiceTest {
         User user = service.get(USER_ID);
         USER_MATCHER.assertMatch(user, UserTestData.user);
     }
-
-
 }

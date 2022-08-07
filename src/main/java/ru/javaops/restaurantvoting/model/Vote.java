@@ -1,7 +1,10 @@
 package ru.javaops.restaurantvoting.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -13,17 +16,17 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Entity
 @Table(name = "votes", uniqueConstraints = @UniqueConstraint(columnNames = {"vote_date", "user_id"}))
-public class Vote extends AbstractBaseEntity{
+public class Vote extends AbstractBaseEntity {
 
     @Column(name = "vote_date")
     private LocalDate voteDate;
 
-    @Column(name = "user_id", updatable=false, insertable=false)
+    @Column(name = "user_id", updatable = false, insertable = false)
+    @NotNull
     private int userId;
 
     @JoinColumn(name = "user_id")
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    @NotNull
     @Schema(hidden = true)
     private User user;
 
@@ -32,8 +35,8 @@ public class Vote extends AbstractBaseEntity{
     private int restaurantId;
 
     public Vote(LocalDate vote_date, int userId, int restaurantId) {
-        this.voteDate=vote_date;
-        this.userId=userId;
-        this.restaurantId =restaurantId;
+        this.voteDate = vote_date;
+        this.userId = userId;
+        this.restaurantId = restaurantId;
     }
 }

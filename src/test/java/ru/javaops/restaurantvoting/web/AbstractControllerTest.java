@@ -16,7 +16,7 @@ public abstract class AbstractControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    protected ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception{
+    protected ResultActions perform(MockHttpServletRequestBuilder builder) throws Exception {
         return mockMvc.perform(builder);
     }
 }

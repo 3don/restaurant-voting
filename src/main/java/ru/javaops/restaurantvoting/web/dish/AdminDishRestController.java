@@ -51,7 +51,7 @@ public class AdminDishRestController {
     }
 
     @PostMapping(value = "/{restaurantId}/dishes", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Dish create(@PathVariable int restaurantId, @Valid  @RequestBody Dish dish) {
+    public Dish create(@PathVariable int restaurantId, @Valid @RequestBody Dish dish) {
         log.info("create {} for user {}", dish, restaurantId);
         checkNew(dish);
         return service.save(dish, restaurantId);

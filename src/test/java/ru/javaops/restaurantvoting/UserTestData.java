@@ -29,7 +29,7 @@ public class UserTestData {
     public static final User admin2 = new User(ADMIN2_ID, "admin@admin.ru", "Second_admin", "Admin_Last_2", "admin", getYesterday(), Set.of(Role.ADMIN, Role.USER));
 
     public static User getNew() {
-        return new User(null, "new@gmail.com",  "New_First", "New_Last", "New_pass", new Date(), Collections.singleton(Role.USER));
+        return new User(null, "new@gmail.com", "New_First", "New_Last", "New_pass", new Date(), Collections.singleton(Role.USER));
     }
 
     public static User getUpdated() {

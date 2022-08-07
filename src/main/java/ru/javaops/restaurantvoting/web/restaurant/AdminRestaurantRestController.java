@@ -50,7 +50,7 @@ public class AdminRestaurantRestController {
 
     @CacheEvict(allEntries = true)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Restaurant create(@Valid  @RequestBody Restaurant restaurant) {
+    public Restaurant create(@Valid @RequestBody Restaurant restaurant) {
         log.info("create {}", restaurant);
         checkNew(restaurant);
         Assert.notNull(restaurant, "restaurant must not be null");

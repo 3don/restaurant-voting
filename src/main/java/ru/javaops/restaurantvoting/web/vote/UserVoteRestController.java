@@ -36,7 +36,7 @@ public class UserVoteRestController {
         this.restaurantRepository = restaurantRepository;
     }
 
-   @GetMapping
+    @GetMapping
     public Vote get(@AuthenticationPrincipal AuthUser authUser) {
         log.info("get user's {} vote ", authUser.id());
         return voteRepository.get(LocalDate.now(), authUser.id()).orElse(null);
@@ -48,17 +48,28 @@ public class UserVoteRestController {
         log.info("make user's {} vote ", authUser.id());
         Assert.notNull(restaurantRepository.getById(restaurantId), "restaurant must not be null");
         Vote vote = get(authUser);
-        if (vote == null) {
-            vote = new Vote(LocalDate.now(), authUser.id(), restaurantId);
-            vote.setUser(userRepository.getById(authUser.id()));
-            return voteRepository.save(vote);
+        Assert.isNull(vote, "vote already exist");
+        vote = new Vote(LocalDate.now(), authUser.id(), restaurantId);
+        vote.setUser(userRepository.getById(authUser.id()));
+        return voteRepository.save(vote);
+    }
+
+    @Transactional
+    @PutMapping("/{restaurantId}")
+    public Vote update(@PathVariable int restaurantId,
+                       @RequestBody Vote vote,
+                       @AuthenticationPrincipal AuthUser authUser) {
+        log.info("update user's {} vote ", authUser.id());
+        Assert.notNull(restaurantRepository.getById(restaurantId), "restaurant must not be null");
+        Vote updateVote = get(authUser);
+        assureIdConsistent(vote, updateVote.id());
+        if (LocalTime.now().isBefore(CONTROL_TIME)) {
+            updateVote.setRestaurantId(restaurantId);
+            return voteRepository.save(updateVote);
         } else {
-            if (LocalTime.now().isBefore(CONTROL_TIME)) {
-                vote.setRestaurantId(restaurantId);
-                return vote;
-            } else {
-                throw new DataConflictException("Changing of choice not allowed after 11:00");
-            }
+            throw new DataConflictException("Changing of choice not allowed after 11:00");
         }
     }
 }
+
+
